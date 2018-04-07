@@ -1,1 +1,1 @@
-"This is my assignment-1 Submission!"
+This is my assignment-1 Submission!
