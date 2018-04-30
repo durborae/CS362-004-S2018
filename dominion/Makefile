@@ -24,9 +24,48 @@ testAll: dominion.o testSuite.c
 interface.o: interface.h interface.c
 	gcc -c interface.c -g  $(CFLAGS)
 
+unit1:
+	gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.c unittest1.c rngs.c -o unittest1 -lm -g
+
+unit2:
+	gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.c unittest2.c rngs.c -o unittest2 -lm -g
+
+unit3:
+	gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.c unittest3.c rngs.c -o unittest3 -lm -g
+
+unit4:
+	gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.c unittest4.c rngs.c -o unittest4 -lm -g
+
+card1:
+	gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.c cardtest1.c rngs.c -o cardtest1 -lm -g
+
+card2:
+	gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.c cardtest2.c rngs.c -o cardtest2 -lm -g
+
+card3:
+	gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.c cardtest3.c rngs.c -o cardtest3 -lm -g
+
+card4:
+	gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.c cardtest4.c rngs.c -o cardtest4 -lm -g
 runtests: testDrawCard 
 	./testDrawCard &> unittestresult.out
-	gcov dominion.c >> unittestresult.out
+	./unittest1 &> unittestresult.out
+	gcov unittest1.c -b >> unittestresult.out
+	./unittest2 >> unittestresult.out
+	gcov unittest2.c -b >> unittestresult.out
+	./unittest3 >> unittestresult.out
+	gcov unittest3.c -b >> unittestresult.out
+	./unittest4 >> unittestresult.out
+	gcov unittest4.c -b >> unittestresult.out
+	./cardtest1 >> unittestresult.out
+	gcov cardtest1.c -b >> unittestresult.out
+	./cardtest2 >> unittestresult.out
+	gcov cardtest2.c -b >> unittestresult.out
+	./cardtest3 >> unittestresult.out
+	gcov cardtest3.c -b >> unittestresult.out
+	./cardtest4 >> unittestresult.out
+	gcov cardtest4.c -b >> unittestresult.out
+	gcov dominion.c -b>> unittestresult.out
 	cat dominion.c.gcov >> unittestresult.out
 
 
