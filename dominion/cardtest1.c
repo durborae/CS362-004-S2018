@@ -1,4 +1,4 @@
-//This Program will implement a test of the shuffle function
+//This Program will implement a test of the smithy card.
 
 #include "dominion.h"
 #include "dominion_helpers.h"

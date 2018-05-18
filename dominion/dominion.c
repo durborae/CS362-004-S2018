@@ -236,12 +236,14 @@ int playCard(int handPos, int choice1, int choice2, int choice3, struct gameStat
   //check if it is the right phase
   if (state->phase != 0)
     {
+	  //printf("Wrong phase\n");
       return -1;
     }
 	
   //check if player has enough actions
   if ( state->numActions < 1 )
     {
+	  //printf("Not Enough Actions\n");
       return -1;
     }
 	
@@ -251,12 +253,14 @@ int playCard(int handPos, int choice1, int choice2, int choice3, struct gameStat
   //check if selected card is an action
   if ( card < adventurer || card > treasure_map )
     {
+	  //printf("Action Failed\n");
       return -1;
     }
 	
   //play card
   if ( cardEffect(card, choice1, choice2, choice3, state, handPos, &coin_bonus) < 0 )
     {
+	  //printf("Cardeffect Failed\n");
       return -1;
     }
 	
@@ -1367,11 +1371,13 @@ int smithy_func(int currentPlayer, struct gameState *state, int handPos, int i){
 	for (i = 0; i < 3; i++)
 	{
 		drawCard(currentPlayer, state);
-		discardCard(handPos, currentPlayer, state, 0);
+		//discardCard(handPos, currentPlayer, state, 0);
 	}
 
 //discard card from hand
 discardCard(handPos, currentPlayer, state, 0);
+state->numActions--;
+//state->numActions--;
 return 0;
 }
 
@@ -1435,9 +1441,9 @@ int great_hall_func(int currentPlayer, struct gameState *state, int handPos) {
 	//+1 Actions
 	state->numActions++;
 	//introduced bug
-	state->numActions++;
+	//state->numActions++;
 
-	//discard card from hand
+	//discard card from hand--not actually required by card
 	discardCard(handPos, currentPlayer, state, 0);
 	return 0;
 }
