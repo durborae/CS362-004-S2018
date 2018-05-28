@@ -1,0 +1,79 @@
+        -:    0:Source:unittest3.c
+        -:    0:Graph:unittest3.gcno
+        -:    0:Data:unittest3.gcda
+        -:    0:Runs:7
+        -:    0:Programs:1
+        -:    1://This Program will implement a test of the getcost function
+        -:    2:
+        -:    3:#include "dominion.h"
+        -:    4:#include "dominion_helpers.h"
+        -:    5:#include "rngs.h"
+        -:    6:#include <stdio.h>
+        -:    7:#include <math.h>
+        -:    8:#include <stdlib.h>
+        -:    9:#include <math.h>
+        -:   10:#include <assert.h>
+        -:   11:
+function main called 7 returned 100% blocks executed 77%
+        7:   12:int main() {
+        -:   13:	struct gameState game_test;
+        -:   14:	int i;
+        7:   15:	int retval = -1;
+        7:   16:	int player = 1;
+        7:   17:	int token = 0;
+        7:   18:	int testlist[27] = { curse, estate, duchy, province, copper, silver, gold, adventurer, council_room, feast,
+        -:   19:		gardens, mine, remodel, smithy, village, baron, great_hall, minion, steward, tribute, ambassador, cutpurse,
+        -:   20:		embargo, outpost, salvager, sea_hag, treasure_map };
+        7:   21:	int known_results[27] = { 0, 2, 5, 8, 0, 3, 6, 6, 5, 4, 4, 5, 4,
+        -:   22:		4, 3, 4, 3, 5, 3, 5, 3, 4, 2, 5, 4, 4, 4 };
+        -:   23:
+        7:   24:	printf("UT 3 Test 1: Testing valid Card\n");
+call    0 returned 100%
+        -:   25:
+      196:   26:	for (i = 0; i < 27; i++) {
+branch  0 taken 96%
+branch  1 taken 4% (fallthrough)
+      189:   27:		retval = getCost(testlist[i]);
+call    0 returned 100%
+      189:   28:		if (known_results[i] != retval && token == 0/*only prints once*/) {
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+branch  2 never executed
+branch  3 never executed
+    #####:   29:			printf("Test 1 Failed\n");
+call    0 never executed
+    #####:   30:			token++;
+        -:   31:		}
+        -:   32:	}
+        7:   33:	if (token == 0) {
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+        7:   34:		printf("Test 1 Passed\n");
+call    0 returned 100%
+        -:   35:	}
+        -:   36:	
+        7:   37:	printf(" UT3 Test 2: Testing invalid Card\n");
+call    0 returned 100%
+        7:   38:	retval = getCost(-1000);
+call    0 returned 100%
+        7:   39:	assert(retval == -1);
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+call    2 never executed
+        7:   40:	if (retval == -1) {
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+        7:   41:		printf("Test 2 Passed!\n");
+call    0 returned 100%
+        -:   42:	}
+        -:   43:	else {
+    #####:   44:		printf("Test 2 Failed!\n");
+call    0 never executed
+        -:   45:	}
+        7:   46:	printf("#################################################\n\n");
+call    0 returned 100%
+        7:   47:	printf("Exit Unit Test 3\n");
+call    0 returned 100%
+        -:   48:
+        7:   49:	return 0;
+        -:   50:}

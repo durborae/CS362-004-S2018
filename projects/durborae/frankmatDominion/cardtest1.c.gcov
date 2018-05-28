@@ -1,0 +1,95 @@
+        -:    0:Source:cardtest1.c
+        -:    0:Graph:cardtest1.gcno
+        -:    0:Data:cardtest1.gcda
+        -:    0:Runs:7
+        -:    0:Programs:1
+        -:    1://This Program will implement a test of the shuffle function
+        -:    2:
+        -:    3:#include "dominion.h"
+        -:    4:#include "dominion_helpers.h"
+        -:    5:#include "rngs.h"
+        -:    6:#include <stdio.h>
+        -:    7:#include <math.h>
+        -:    8:#include <stdlib.h>
+        -:    9:#include "assert.h"
+        -:   10:#include <errno.h>
+        -:   11:
+function main called 7 returned 100% blocks executed 75%
+        7:   12:int main() {
+        -:   13:	//initialize the pretest stuff
+        -:   14:	struct gameState game_test;
+        7:   15:	int retval = 0;
+        7:   16:	int actioncount = 0;
+        7:   17:	int cardcount = 0;
+        7:   18:	int k[10] = { adventurer, gardens, embargo, village, minion, mine, cutpurse,
+        -:   19:		sea_hag, tribute, smithy };
+        7:   20:	int seed = time(NULL);
+call    0 returned 100%
+        7:   21:	int token = 0;
+        -:   22:	
+        7:   23:	printf("Initializing game...\n");
+call    0 returned 100%
+        -:   24:	//initialize game
+        7:   25:	retval = initializeGame(2, k, seed, &game_test);
+call    0 returned 100%
+        7:   26:	assert(retval == 0);
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+call    2 never executed
+        7:   27:	printf("Initialization Complete...\n");
+call    0 returned 100%
+        7:   28:	printf("#################################################\n\n");
+call    0 returned 100%
+        7:   29:	printf("Testing Card: Smithy...\n");
+call    0 returned 100%
+        -:   30:
+        -:   31:	//preserve game state
+        7:   32:	actioncount = game_test.numActions;
+        7:   33:	cardcount = numHandCards(&game_test);
+call    0 returned 100%
+        -:   34:
+        -:   35:	//put Smithy into hand and play
+        7:   36:	game_test.hand[0][0] = smithy;
+        7:   37:	retval = playCard(0, 0, 0, 0, &game_test);
+call    0 returned 100%
+        7:   38:	assert(retval != -1);
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+call    2 never executed
+        -:   39:
+        -:   40:	//check new status
+        7:   41:	int newcards = numHandCards(&game_test);
+call    0 returned 100%
+        -:   42:	//assert(newcards == (cardcount - 2)); //add 3 after playing one for net 2
+        7:   43:	if (newcards != (cardcount - 2)) {
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+        7:   44:		printf("Test Smithy Failed! Ending Hand Size Not as Expected.\n");
+call    0 returned 100%
+        7:   45:		token = 1;
+        -:   46:	}
+        -:   47:
+        -:   48:	//Check action count
+        7:   49:	int newaction = game_test.numActions;
+        -:   50:	//assert(newaction == (actioncount - 1));
+        7:   51:	if (newaction != (actioncount - 1) && token != 1) {
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+branch  2 never executed
+branch  3 never executed
+    #####:   52:		printf("Test Smithy Failed! Ending Action Count Not as Expected.\n");
+call    0 never executed
+    #####:   53:		token = 1;
+        -:   54:	}
+        -:   55:
+        7:   56:	if (token == 0) {
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+    #####:   57:		printf("Test Smithy Passed!\n");
+call    0 never executed
+        -:   58:	}
+        -:   59:
+        -:   60:
+        7:   61:	return 0;
+        -:   62:
+        -:   63:}

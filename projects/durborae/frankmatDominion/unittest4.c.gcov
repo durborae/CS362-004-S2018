@@ -1,0 +1,96 @@
+        -:    0:Source:unittest4.c
+        -:    0:Graph:unittest4.gcno
+        -:    0:Data:unittest4.gcda
+        -:    0:Runs:7
+        -:    0:Programs:1
+        -:    1://This will test buycard
+        -:    2:#include "dominion.h"
+        -:    3:#include "dominion_helpers.h"
+        -:    4:#include "rngs.h"
+        -:    5:#include <stdio.h>
+        -:    6:#include <math.h>
+        -:    7:#include <stdlib.h>
+        -:    8:#include <math.h>
+        -:    9:#include <assert.h>
+        -:   10:
+function main called 7 returned 100% blocks executed 79%
+        7:   11:int main() {
+        -:   12:	struct gameState game_test;
+        -:   13:	int i;
+        7:   14:	int player = 1;
+        7:   15:	int retval = 0;
+        7:   16:	int k[10] = { adventurer, gardens, embargo, village, minion, mine, cutpurse,
+        -:   17:		sea_hag, tribute, smithy };
+        7:   18:	int seed = time(NULL);
+call    0 returned 100%
+        -:   19:
+        7:   20:	printf("Initializing game...\n");
+call    0 returned 100%
+        -:   21:	//initialize game
+        7:   22:	retval = initializeGame(2, k, seed, &game_test);
+call    0 returned 100%
+        7:   23:	assert(retval == 0);
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+call    2 never executed
+        7:   24:	printf("Initialization Complete...\n");
+call    0 returned 100%
+        7:   25:	printf("#################################################\n\n");
+call    0 returned 100%
+        -:   26:
+        7:   27:	assert(retval == 0);
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+call    2 never executed
+        -:   28:
+        7:   29:	game_test.coins = 5;
+        7:   30:	game_test.numBuys = 2;
+        -:   31:
+        7:   32:	printf("Test 1: Handling of bad value\n");
+call    0 returned 100%
+        -:   33:	//Fail
+        7:   34:	retval = buyCard(-2, &game_test);
+call    0 returned 100%
+        7:   35:	assert(retval == -1);
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+call    2 never executed
+        7:   36:	if (retval == -1) {
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+        7:   37:		printf("Test 1 Passed!\n");
+call    0 returned 100%
+        -:   38:	}
+        -:   39:	else {
+    #####:   40:		printf("Test 1 Failed!\n");
+call    0 never executed
+        -:   41:	}
+        7:   42:	printf("#################################################\n\n");
+call    0 returned 100%
+        -:   43:
+        7:   44:	printf("Test 2: Valid inputs\n");
+call    0 returned 100%
+        -:   45:	//testing valid inputs
+        7:   46:	retval = buyCard(2, &game_test);
+call    0 returned 100%
+        7:   47:	assert(retval == 0);
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+call    2 never executed
+        7:   48:	if (retval == 0) {
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+        7:   49:		printf("Test 2 Passed!\n");
+call    0 returned 100%
+        -:   50:	}
+        -:   51:	else {
+    #####:   52:		printf("Test 2 Failed!\n");
+call    0 never executed
+        -:   53:	}
+        7:   54:	printf("#################################################\n\n");
+call    0 returned 100%
+        7:   55:	printf("Exit Unit Test 4\n");
+call    0 returned 100%
+        -:   56:	
+        7:   57:	return 0;
+        -:   58:}

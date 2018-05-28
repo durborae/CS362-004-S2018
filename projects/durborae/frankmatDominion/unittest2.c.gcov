@@ -1,0 +1,107 @@
+        -:    0:Source:unittest2.c
+        -:    0:Graph:unittest2.gcno
+        -:    0:Data:unittest2.gcda
+        -:    0:Runs:7
+        -:    0:Programs:1
+        -:    1://This Program will implement a test of the isgameover function
+        -:    2:#include "dominion.h"
+        -:    3:#include "dominion_helpers.h"
+        -:    4:#include "rngs.h"
+        -:    5:#include <stdio.h>
+        -:    6:#include <math.h>
+        -:    7:#include <stdlib.h>
+        -:    8:#include <math.h>
+        -:    9:#include <assert.h>
+        -:   10:
+function main called 7 returned 100% blocks executed 86%
+        7:   11:int main() {
+        -:   12:	struct gameState game_test;
+        -:   13:	int i;
+        7:   14:	int player = 1;
+        7:   15:	int retval = 0;
+        7:   16:	int k[10] = { adventurer, gardens, embargo, village, minion, mine, cutpurse,
+        -:   17:		sea_hag, tribute, smithy };
+        7:   18:	int seed = time(NULL);
+call    0 returned 100%
+        -:   19:
+        7:   20:	printf("Begin Unit Test 2\n");
+call    0 returned 100%
+        7:   21:	printf("Initializing game...\n");
+call    0 returned 100%
+        -:   22:	//initialize game
+        7:   23:	retval = initializeGame(2, k, seed, &game_test);
+call    0 returned 100%
+        7:   24:	assert(retval == 0);
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+call    2 never executed
+        7:   25:	printf("Initialization Complete...\n");
+call    0 returned 100%
+        7:   26:	printf("#################################################\n\n");
+call    0 returned 100%
+        -:   27:
+        7:   28:	printf("isgameover test 1: Game Ends by Running Out of Province Cards\n");
+call    0 returned 100%
+        7:   29:	game_test.supplyCount[province] = 0;//setting it to win criteria
+        7:   30:	retval = isGameOver(&game_test);
+call    0 returned 100%
+        -:   31:
+        7:   32:	if (retval == 1) {
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+        7:   33:		printf("Test 1 Passed!\n");
+call    0 returned 100%
+        -:   34:	}
+        -:   35:	else {
+    #####:   36:		printf("Test 1 Failed!\n");
+call    0 never executed
+        -:   37:	}
+        -:   38:	
+        7:   39:	retval = 0;
+        7:   40:	printf("#################################################\n\n");
+call    0 returned 100%
+        -:   41:
+        -:   42:	//Initializing three supply stacks to 0
+        7:   43:	game_test.supplyCount[0] = game_test.supplyCount[1] = game_test.supplyCount[24] = 0;
+        7:   44:	printf("isgameover test 2: Game Ends By Running Out of Supply Cards in Three Stacks\n");
+call    0 returned 100%
+        7:   45:	retval = isGameOver(&game_test);
+call    0 returned 100%
+        7:   46:	if (retval == 1) {
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+        7:   47:		printf("Test 2 Passed!\n");
+call    0 returned 100%
+        -:   48:	}
+        -:   49:	else {
+    #####:   50:		printf("Test 2 Failed!\n");
+call    0 never executed
+        -:   51:	}
+        7:   52:	retval = 0;
+        7:   53:	printf("#################################################\n\n");
+call    0 returned 100%
+        -:   54:
+        7:   55:	game_test.supplyCount[1] = -1;
+        7:   56:	printf("Test 4: Game Ends By Running Out of Supply Cards in Three Stacks but with one outside of range\n");
+call    0 returned 100%
+        7:   57:	retval = isGameOver(&game_test);
+call    0 returned 100%
+        7:   58:	if (retval != 1) {
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+    #####:   59:		printf("Test 4 Passed!\n");
+call    0 never executed
+        -:   60:	}
+        -:   61:	else {
+        7:   62:		printf("Test 4 Failed!\n");
+call    0 returned 100%
+        -:   63:	}
+        7:   64:	retval = 0;
+        7:   65:	game_test.supplyCount[0] = game_test.supplyCount[1] = game_test.supplyCount[24] = 3;
+        7:   66:	printf("#################################################\n\n");
+call    0 returned 100%
+        7:   67:	printf("Exit Unit Test 2\n");
+call    0 returned 100%
+        -:   68:
+        7:   69:	return 0;
+        -:   70:}

@@ -1,0 +1,119 @@
+        -:    0:Source:unittest1.c
+        -:    0:Graph:unittest1.gcno
+        -:    0:Data:unittest1.gcda
+        -:    0:Runs:7
+        -:    0:Programs:1
+        -:    1://This Program will implement a test of the numHandCards function
+        -:    2:
+        -:    3:#include "dominion.h"
+        -:    4:#include "dominion_helpers.h"
+        -:    5:#include "rngs.h"
+        -:    6:#include <stdio.h>
+        -:    7:#include <math.h>
+        -:    8:#include <stdlib.h>
+        -:    9:#include "assert.h"
+        -:   10:#include <time.h>
+        -:   11:
+function main called 7 returned 100% blocks executed 83%
+        7:   12:int main() {
+        -:   13:	struct gameState game_test;
+        7:   14:	srand(time(NULL)); 
+call    0 returned 100%
+call    1 returned 100%
+        7:   15:	int numPlayers = rand() % 3 + 2;
+call    0 returned 100%
+        7:   16:	int retval = 0;
+        7:   17:	int token = 0;
+        7:   18:	int randomSeed = rand();
+call    0 returned 100%
+        7:   19:	int k[10] = { adventurer, gardens, embargo, village, minion,
+        -:   20:		mine, cutpurse, sea_hag, tribute, smithy };
+        -:   21:
+        7:   22:	printf("#################################################\n\n");
+call    0 returned 100%
+        7:   23:	printf("Initializing game...\n");
+call    0 returned 100%
+        -:   24:	//initialize game
+        7:   25:	retval = initializeGame(numPlayers, k, randomSeed, &game_test);
+call    0 returned 100%
+        7:   26:	assert(retval == 0);
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+call    2 never executed
+        7:   27:	printf("Initialization Complete...\n");
+call    0 returned 100%
+        7:   28:	printf("#################################################\n\n");
+call    0 returned 100%
+        -:   29:
+        7:   30:	printf("Testing numHandCards...\n");
+call    0 returned 100%
+        7:   31:	printf("#################################################\n\n");
+call    0 returned 100%
+        -:   32:
+        7:   33:	game_test.whoseTurn = 0;
+        7:   34:	retval = numHandCards(&game_test);
+call    0 returned 100%
+        7:   35:	assert(retval == game_test.handCount[0]);
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+call    2 never executed
+        -:   36:	/*
+        -:   37:	if (retval != game_test.handCount[0] && token != 1) {
+        -:   38:		token = 1;
+        -:   39:		printf("Test numHandCards Failed!\n");
+        -:   40:		printf("Expected: 0, Actual:%d\n", retval);
+        -:   41:	}
+        -:   42:	*/
+        7:   43:	game_test.whoseTurn = 3;
+        7:   44:	retval = numHandCards(&game_test);
+call    0 returned 100%
+        7:   45:	assert(retval == game_test.handCount[3]);
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+call    2 never executed
+        -:   46:	/*
+        -:   47:	if (retval != game_test.handCount[0]) {
+        -:   48:		token = 1;
+        -:   49:		printf("Test numHandCards Failed!\n");
+        -:   50:		printf("Expected: 3, Actual:%d\n", retval);
+        -:   51:	}
+        -:   52:	*/
+        7:   53:	game_test.whoseTurn = 2;
+        7:   54:	retval = numHandCards(&game_test);
+call    0 returned 100%
+        7:   55:	assert(retval == game_test.handCount[2]);
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+call    2 never executed
+        -:   56:	/*
+        -:   57:	if (retval != game_test.handCount[0]) {
+        -:   58:		token = 1;
+        -:   59:		printf("Test numHandCards Failed!\n");
+        -:   60:		printf("Expected: 2, Actual:%d\n", retval);
+        -:   61:	}
+        -:   62:	*/
+        7:   63:	game_test.whoseTurn = 1;
+        7:   64:	retval = numHandCards(&game_test);
+call    0 returned 100%
+        7:   65:	assert(retval == game_test.handCount[1]);
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+call    2 never executed
+        -:   66:	/*
+        -:   67:	if (retval != game_test.handCount[0]) {
+        -:   68:		token = 1;
+        -:   69:		printf("Test numHandCards Failed!\n");
+        -:   70:		printf("Expected: 1, Actual:%d\n", retval);
+        -:   71:	}
+        -:   72:
+        -:   73:	if (token == 0) {
+        -:   74:		printf("Test numHandCards Passed!\n");
+        -:   75:	}
+        -:   76:	*/
+        7:   77:	printf("Testing numHandCards Complete\n");
+call    0 returned 100%
+        7:   78:	printf("#################################################\n\n");
+call    0 returned 100%
+        -:   79:
+        7:   80:	return 0;
+        -:   81:}

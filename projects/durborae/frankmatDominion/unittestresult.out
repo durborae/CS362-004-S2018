@@ -1,0 +1,137 @@
+#################################################
+
+Initializing game...
+Initialization Complete...
+#################################################
+
+Testing numHandCards...
+#################################################
+
+Testing numHandCards Complete
+#################################################
+
+File 'unittest1.c'
+Lines executed:100.00% of 30
+Branches executed:100.00% of 10
+Taken at least once:50.00% of 10
+Calls executed:77.27% of 22
+Creating 'unittest1.c.gcov'
+
+Begin Unit Test 2
+Initializing game...
+Initialization Complete...
+#################################################
+
+isgameover test 1: Game Ends by Running Out of Province Cards
+Test 1 Passed!
+#################################################
+
+isgameover test 2: Game Ends By Running Out of Supply Cards in Three Stacks
+Test 2 Passed!
+#################################################
+
+Test 4: Game Ends By Running Out of Supply Cards in Three Stacks but with one outside of range
+Test 4 Failed!
+#################################################
+
+Exit Unit Test 2
+File 'unittest2.c'
+Lines executed:92.11% of 38
+Branches executed:100.00% of 8
+Taken at least once:50.00% of 8
+Calls executed:82.61% of 23
+Creating 'unittest2.c.gcov'
+
+UT 3 Test 1: Testing valid Card
+Test 1 Passed
+ UT3 Test 2: Testing invalid Card
+Test 2 Passed!
+#################################################
+
+Exit Unit Test 3
+File 'unittest3.c'
+Lines executed:86.96% of 23
+Branches executed:83.33% of 12
+Taken at least once:50.00% of 12
+Calls executed:72.73% of 11
+Creating 'unittest3.c.gcov'
+
+Initializing game...
+Initialization Complete...
+#################################################
+
+Test 1: Handling of bad value
+Test 1 Passed!
+#################################################
+
+Test 2: Valid inputs
+Test 2 Passed!
+#################################################
+
+Exit Unit Test 4
+File 'unittest4.c'
+Lines executed:93.10% of 29
+Branches executed:100.00% of 12
+Taken at least once:50.00% of 12
+Calls executed:70.00% of 20
+Creating 'unittest4.c.gcov'
+
+Initializing game...
+Initialization Complete...
+#################################################
+
+Testing Card: Smithy...
+Test Smithy Failed! Ending Hand Size Not as Expected.
+File 'cardtest1.c'
+Lines executed:89.66% of 29
+Branches executed:83.33% of 12
+Taken at least once:41.67% of 12
+Calls executed:71.43% of 14
+Creating 'cardtest1.c.gcov'
+
+Initializing game...
+Initialization Complete...
+#################################################
+
+Testing Card: Adventurer...
+Test Adventurer Failed! No net gain in cards in hand
+Test Adventurer Failed! No Net Loss in Deck Size
+#################################################
+
+File 'cardtest2.c'
+Lines executed:91.67% of 36
+Branches executed:85.71% of 14
+Taken at least once:42.86% of 14
+Calls executed:77.78% of 18
+Creating 'cardtest2.c.gcov'
+
+Initializing game...
+Initialization Complete...
+#################################################
+
+Testing Card: Gardens...
+Test Garden Failed! Playcard Failed!
+Test Gardens Failed! Card-in-hand count not as expected
+Test Gardens Failed! Action count not as expected
+#################################################
+
+File 'cardtest3.c'
+Lines executed:96.88% of 32
+Branches executed:100.00% of 10
+Taken at least once:50.00% of 10
+Calls executed:86.67% of 15
+Creating 'cardtest3.c.gcov'
+
+Initializing game...
+Initialization Complete...
+#################################################
+
+Testing Card: Village...
+Test Village Failed! Action Count not as Expected
+File 'cardtest4.c'
+Lines executed:83.87% of 31
+Branches executed:100.00% of 12
+Taken at least once:50.00% of 12
+Calls executed:71.43% of 14
+Creating 'cardtest4.c.gcov'
+

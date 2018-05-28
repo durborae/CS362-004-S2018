@@ -1,0 +1,126 @@
+        -:    0:Source:randomtestcard1.c
+        -:    0:Graph:randomtestcard1.gcno
+        -:    0:Data:randomtestcard1.gcda
+        -:    0:Runs:5
+        -:    0:Programs:1
+        -:    0:Source is newer than graph
+        -:    1:#include "dominion.h"
+        -:    2:#include "rngs.h"
+        -:    3:#include <stdio.h>
+        -:    4:#include <math.h>
+        -:    5:#include <stdlib.h>
+        -:    6:#include <assert.h>
+        -:    7:#include <time.h>
+        -:    8:
+        -:    9:#define NUMTESTS 100000
+        -:   10:
+function main called 5 returned 100% blocks executed 97%
+        5:   11:int main() {
+        5:   12:	srand(time(NULL));
+call    0 returned 100%
+call    1 returned 100%
+        -:   13:	struct gameState game_test;
+        -:   14:	int success, fail, x, i, token;
+        5:   15:	success = fail = x = i = token = 0;
+        -:   16:	//srand(time(NULL));
+        5:   17:	int seed = time(NULL);
+call    0 returned 100%
+        -:   18:	int retval, actioncount, cardcount;
+        5:   19:	int k[10] = { adventurer, gardens, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy };
+        -:   20:
+   500005:   21:	for (x = 0; x < NUMTESTS; x++) {
+branch  0 taken 99%
+branch  1 taken 1% (fallthrough)
+   500000:   22:		int numplayers = rand() % MAX_PLAYERS + 1;
+call    0 returned 100%
+  1751336:   23:		for (i = 0; i < numplayers; i++) {
+branch  0 taken 71%
+branch  1 taken 29% (fallthrough)
+  1251336:   24:			initializeGame(numplayers, k, seed, &game_test);
+call    0 returned 100%
+  1251336:   25:			int currplayer = whoseTurn(&game_test);
+call    0 returned 100%
+  1251336:   26:			actioncount = game_test.numActions;
+  1251336:   27:			cardcount = numHandCards(&game_test);
+call    0 returned 100%
+        -:   28:
+        -:   29:			//preserve game state
+  1251336:   30:			actioncount = game_test.numActions;
+  1251336:   31:			cardcount = numHandCards(&game_test);
+call    0 returned 100%
+        -:   32:
+        -:   33:			//put Smithy into hand and play
+  1251336:   34:			game_test.hand[currplayer][0] = smithy;
+        -:   35:
+  1251336:   36:			int randomnum = rand() % 100;
+call    0 returned 100%
+  1251336:   37:			if (randomnum >= 0 && randomnum < 5) {
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+branch  2 taken 5% (fallthrough)
+branch  3 taken 95%
+    62213:   38:				game_test.deckCount[i] = 0;
+        -:   39:			}
+  1189123:   40:			else if (randomnum >= 5 && randomnum < 10) {
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+branch  2 taken 5% (fallthrough)
+branch  3 taken 95%
+    62287:   41:				game_test.handCount[i] = 0;
+        -:   42:			}
+  1126836:   43:			else if (randomnum >= 10 && randomnum < 15) {
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+branch  2 taken 6% (fallthrough)
+branch  3 taken 94%
+    62721:   44:				game_test.numActions = 0;
+        -:   45:			}
+        -:   46:
+  1251336:   47:			retval = playCard(0, 0, 0, 0, &game_test);
+call    0 returned 100%
+  1251336:   48:			if (retval == -1) {
+branch  0 taken 14% (fallthrough)
+branch  1 taken 86%
+   180968:   49:				token = 1;
+        -:   50:				//printf("Failed cond 1\n");
+        -:   51:			}
+        -:   52:
+        -:   53:			//check new status
+  1251336:   54:			int newcards = numHandCards(&game_test);
+call    0 returned 100%
+        -:   55:			//assert(newcards == (cardcount - 2)); //add 3 after playing one for net 2
+  1251336:   56:			if ((newcards - 2) != cardcount ) {
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+  1251336:   57:				token = 1;
+        -:   58:				//printf("Failed cond 2\n");
+        -:   59:			}
+        -:   60:
+        -:   61:			//Check action count
+  1251336:   62:			int newaction = game_test.numActions;
+        -:   63:			//assert(newaction == (actioncount - 1));
+  1251336:   64:			if (newaction != actioncount) {
+branch  0 taken 90% (fallthrough)
+branch  1 taken 10%
+  1126809:   65:				token = 1;
+        -:   66:				//printf("Failed cond 3\n");
+        -:   67:				//printf("NewAction: %d AcountCount: %d\n", newaction, actioncount);
+        -:   68:			}
+        -:   69:
+  1251336:   70:			if (token == 0) {
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+    #####:   71:				success++;
+        -:   72:			}
+        -:   73:			else {
+  1251336:   74:				fail++;
+        -:   75:			}
+  1251336:   76:			token = 0;//reset token
+        -:   77:		}
+        -:   78:
+        -:   79:	}
+        5:   80:	printf("Success: %d, Failed: %d\n", success, fail);
+call    0 returned 100%
+        -:   81:
+        5:   82:	return 0;
+        -:   83:}
